@@ -1,0 +1,16 @@
+﻿@model WebApplication1.Models.ModelFilmList
+@namespace AspNetCore
+@using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor
+
+
+<form enctype="multipart/form-data" method="post" asp-action="Delete">
+    <input type="hidden">
+     <div class="border p-3 mt-4">
+         <div class="row pb-2">
+            <h2 class="text-primary">Are you sure, you want delete? </h2>
+            <hr />
+          </div>
+        <button type="submit" class="btn btn-danger" style="width:150px">Yes</button>
+            <a asp-controller="FilmList" asp-action="FilmList" class="btn btn-secondary" style="width:150px">No</a>
+     </div>
+</form>

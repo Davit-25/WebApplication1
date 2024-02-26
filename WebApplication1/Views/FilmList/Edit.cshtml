@@ -1,0 +1,32 @@
+﻿@using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor
+@model WebApplication1.Models.ModelFilmList
+@namespace AspNetCore
+
+
+<form enctype="multipart/form-data" method="post" asp-action="Edit">
+    <input type="hidden">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Edit films list</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="name"> </label>
+            <input asp-for="name" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="genre"> </label>
+            <input asp-for="genre" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="setAge"> </label>
+            <input asp-for="setAge" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="imbd"> </label>
+            <input asp-for="imbd" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-danger" style="width:150px">Edit</button>
+        <a asp-controller="FilmList" asp-action="FilmList" class="btn btn-secondary" style="width:150px">Back to list</a>
+    </div>
+</form>
