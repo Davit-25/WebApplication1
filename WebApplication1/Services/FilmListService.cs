@@ -1,5 +1,4 @@
-﻿using WebApplication1.Entities;
-using WebApplication1.Iterfaces;
+﻿using WebApplication1.Iterfaces;
 using WebApplication1.Mapping;
 using AspNetCore;
 using WebApplication1.Models;
@@ -8,6 +7,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Microsoft.IdentityModel.Tokens;
+using WebApplication1.Entities;
 
 namespace WebApplication1.Services
 {
@@ -25,8 +25,8 @@ namespace WebApplication1.Services
 
         public IEnumerable<FilmsList> GetFilmsList(string searchString)
         {
-         
-                return _tableContext.filmListDB.Where(e => string.IsNullOrEmpty(searchString) || e.name.Contains(searchString));
+
+            return _tableContext.filmListDB.Where(e => string.IsNullOrEmpty(searchString) || e.name.Contains(searchString));
 
         }
         public FilmListResponce CreateFilmList(ModelFilmList request)

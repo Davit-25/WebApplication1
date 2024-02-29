@@ -15,11 +15,17 @@ using WebApplication1.Iterfaces;
 using WebApplication1.Models;
 using System.Collections.Generic;
 using PagedList;
+using Microsoft.CodeAnalysis.Options;
+using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Humanizer;
+using System;
 
 namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles ="Admin")]
     public class FilmListController : Controller
     {
 
@@ -33,16 +39,30 @@ namespace WebApplication1.Controllers
             _context = context;
             _filmListService = filmListService;
         }
-
+        
         [Route("Main page")]
         [Route("Main page/FilmList")]
         [Route("FilmList/Films")]
+        [AllowAnonymous]
+         public IActionResult FilmList(string currentFilter,string searchString, int pg=1)
+         {
+            ViewData["currentFilter"] = searchString;
+            var objFilms = _filmListService.GetFilmsList(searchString);
+            const int pageSize = 5;
+            if (pg<1)
+            {
+                pg = 1;
+            }
+            int recsCount = objFilms.Count();
+            var pager=new Paging(recsCount,pg, pageSize);
+            int recSkip=(pg-1) *pageSize;
+            var data = objFilms.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.Paging= pager;
 
-        public IActionResult FilmList(string currentFilter, string searchString)
-        {
-             IEnumerable<FilmsList>  filmsLists = _filmListService.GetFilmsList( searchString);
-            return View(filmsLists);
+            return View(data);
+
         }
+
 
         [Route("FilmList/Create")]
         [Route("FilmList/Create/{id?}")]
@@ -68,6 +88,8 @@ namespace WebApplication1.Controllers
      
         [Route("FilmList/Delete")]
         [Route("FilmList/Delete/{id?}")]
+        [HttpPost,ActionName("Delete")]
+       
         public IActionResult Delete( int? id)
         {
             if (id==null|| id==0)
@@ -84,7 +106,6 @@ namespace WebApplication1.Controllers
             return View(deleteFilmResponce.GetModelFilmList);
         }
 
-        [HttpPost,ActionName("Delete")]
         [Route("FilmList/Delete")]
         [Route("FilmList/Delete/{id?}")]
         public IActionResult Deleted( int? id)
@@ -101,6 +122,7 @@ namespace WebApplication1.Controllers
 
         [Route("FilmList/Edit")]
         [Route("FilmList/Edit/{id?}")]
+      
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)

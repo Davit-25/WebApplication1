@@ -1,7 +1,4 @@
-﻿
-using WebApplication1.Models;
-
-namespace WebApplication1.Entities
+﻿namespace WebApplication1.Entities
 {
     public class PackageOfCinema
     {

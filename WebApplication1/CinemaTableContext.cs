@@ -4,7 +4,6 @@ using System.Xml;
 using WebApplication1.Areas.Identity.Data;
 using WebApplication1.Congiguration;
 using WebApplication1.Entities;
-using WebApplication1.Models;
 
 namespace WebApplication1
 {

@@ -2,7 +2,7 @@
 {
     public class FilmListResponce
     {
-        public ModelFilmList     modelFilmList { get; set; }
+        public ModelFilmList   modelFilmList { get; set; }
 
        
     }
