@@ -71,10 +71,10 @@ namespace WebApplication1.Services
             var filmListExists = _tableContext.filmListDB.Any(e => e.id == updateFilmListRequest.UpdatetoFilmList.id);
           
               var exitingEntity = _tableContext.filmListDB.Find(updateFilmListRequest.UpdatetoFilmList.id);
-               
-            
 
-           
+
+
+
             _filmListMapping.FilmListMapFromModelToEntity(updateFilmListRequest.UpdatetoFilmList, exitingEntity);
             _tableContext.SaveChanges(); 
             return new UpdateFilmListResponce {UpdatedFilmList= updateFilmListRequest.UpdatetoFilmList };

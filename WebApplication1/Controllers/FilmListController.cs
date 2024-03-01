@@ -88,7 +88,7 @@ namespace WebApplication1.Controllers
      
         [Route("FilmList/Delete")]
         [Route("FilmList/Delete/{id?}")]
-        [HttpPost,ActionName("Delete")]
+        
        
         public IActionResult Delete( int? id)
         {
@@ -108,6 +108,7 @@ namespace WebApplication1.Controllers
 
         [Route("FilmList/Delete")]
         [Route("FilmList/Delete/{id?}")]
+        [HttpPost, ActionName("Delete")]
         public IActionResult Deleted( int? id)
         {
 
@@ -122,7 +123,6 @@ namespace WebApplication1.Controllers
 
         [Route("FilmList/Edit")]
         [Route("FilmList/Edit/{id?}")]
-      
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)

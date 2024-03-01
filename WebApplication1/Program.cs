@@ -21,6 +21,7 @@ using System.Configuration;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using WebApplication1.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 
 
@@ -31,9 +32,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddControllers(
 options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IFilmListService, FilmListService>();
 builder.Services.AddScoped<IFilmListMapping<FilmsList, WebApplication1.Models.ModelFilmList>, MapperFilmList>();
+builder.Services.AddScoped<ISessionsService, SessionsService>();
+builder.Services.AddScoped<IFilmListMapping<Sessions, WebApplication1.Models.ModelSessions>, MapperSessions>();
 
 builder.Services.AddDbContext<CinemaTableContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("CinemaTableDB")));
 builder.Services.AddDbContext<FilmApplicDBContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("FilmApplicDbUser")));

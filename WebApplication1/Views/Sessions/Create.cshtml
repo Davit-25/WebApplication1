@@ -1,0 +1,22 @@
+﻿@model WebApplication1.Models.ModelSessions
+@namespace AspNetCore
+
+<form enctype="multipart/form-data" method=" post" asp-action="Created">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Sessions </h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="dateTime"> </label>
+            <input asp-for="dateTime" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="price"> </label>
+            <input asp-for="price" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-success" style="width:150px">Create</button>
+        <a asp-controller="Sessions" asp-action="AllCategories" class="btn btn-secondary" style="width:150px">Back to list</a>
+
+    </div>
+</form>
